@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sentiance_plugin/sentiance_plugin.dart';
 
 import 'settings_controller.dart';
 
@@ -12,6 +13,7 @@ class SettingsView extends StatelessWidget {
   static const routeName = '/settings';
 
   final SettingsController controller;
+  static final sentiance = Sentiance();
 
   @override
   Widget build(BuildContext context) {

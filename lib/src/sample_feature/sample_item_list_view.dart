@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sentiance_plugin/sentiance_plugin.dart';
 
 import '../settings/settings_view.dart';
 import 'sample_item.dart';
@@ -6,7 +7,7 @@ import 'sample_item_details_view.dart';
 
 /// Displays a list of SampleItems.
 class SampleItemListView extends StatelessWidget {
-  const SampleItemListView({
+  SampleItemListView({
     super.key,
     this.items = const [
       SampleItem(1),
@@ -14,17 +15,21 @@ class SampleItemListView extends StatelessWidget {
       SampleItem(3),
       SampleItem(4)
     ],
-  });
+  }) : super() {
+    print("[sample] in the constructor");
+    print('user id: ${this.sentiance.getUserId()}');
+  }
 
   static const routeName = '/';
 
   final List<SampleItem> items;
+  final sentiance = Sentiance();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sample Application'),
+        title: const Text('Sentiance Sample Application'),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
