@@ -5,6 +5,8 @@ import 'package:sentiance_plugin/sentiance_plugin.dart';
 import 'package:sentiance_plugin/models/create_user_input.dart';
 import 'home_screen.dart';
 
+import '../helpers/auth.dart';
+
 class SetupScreen extends StatefulWidget {
   static const routeName = '/';
 
@@ -16,17 +18,11 @@ class _SetupScreenState extends State<SetupScreen> {
   final sentiance = Sentiance();
 
   Future<void> _updateMessage() async {
-    if (await sentiance.userExists()) {
-      if (!context.mounted) return;
-      loadHome();
-      return;
-    }
-
-    const authCode = "...";
+    final AuthCodeResult result = await fetchAuthCode();
 
     try {
-      var user = await sentiance.createUser(CreateUserInput(authCode));
-      print(user);
+      await sentiance.createUser(CreateUserInput(result.authCode));
+      loadHome();
     } catch (e) {
       print(e);
     }

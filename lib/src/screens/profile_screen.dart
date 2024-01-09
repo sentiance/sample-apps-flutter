@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sentiance_plugin/sentiance_plugin.dart';
 import 'setup_screen.dart';
 
+import '../widgets/label_text.dart';
+
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -10,6 +12,20 @@ class ProfileScreen extends StatefulWidget {
 // boilerplate for the simple stateful widget
 class _ProfileScreenState extends State<ProfileScreen> {
   final sentiance = Sentiance();
+  String userId = "";
+  String initStatus = "";
+  String startStatus = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    sentiance.getUserId().then((value) {
+      setState(() {
+        userId = value!;
+      });
+    });
+  }
 
   void loadSetup() {
     if (!context.mounted) return;
@@ -29,11 +45,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Profile Content',
-              style: TextStyle(fontSize: 20),
-            ),
+            const Text('SDK & User Information',
+                style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 24),
+            LabelText(key: Key("sdk-user-id"), label: "User ID", text: userId),
+            const SizedBox(height: 24),
+            LabelText(
+                key: Key("init-status"),
+                label: "Init Status",
+                text: "(pending)"),
+            const SizedBox(height: 24),
+            LabelText(
+                key: Key("start-status"),
+                label: "Start Status",
+                text: "(pending)"),
+            const SizedBox(height: 48),
             ElevatedButton(
               onPressed: () async {
                 try {
