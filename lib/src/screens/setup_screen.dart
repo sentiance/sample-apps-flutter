@@ -1,19 +1,18 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:sentiance_plugin/sentiance_plugin.dart';
 import 'package:sentiance_plugin/models/create_user_input.dart';
-import '../screens/home_screen.dart';
+import 'home_screen.dart';
 
-class SetupView extends StatefulWidget {
+class SetupScreen extends StatefulWidget {
   static const routeName = '/';
 
   @override
-  _SetupViewState createState() => _SetupViewState();
+  _SetupScreenState createState() => _SetupScreenState();
 }
 
-class _SetupViewState extends State<SetupView> {
+class _SetupScreenState extends State<SetupScreen> {
   String message = "Press the button";
   final sentiance = Sentiance();
 
@@ -30,8 +29,7 @@ class _SetupViewState extends State<SetupView> {
       return;
     }
 
-    const authCode =
-        "3bfb19bb837b620b45785c7a8bdc93a14beb6b235a68408afcc782147c577bd8e115647c09a79966e0f58702684350a784a11511ac8652b5bbde910d132865d9";
+    const authCode = "...";
 
     try {
       var user = await sentiance.createUser(CreateUserInput(authCode));

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import './profile_screen.dart';
+import './timeline_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
 
@@ -10,6 +13,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
+  final List<Widget> _children = [
+    ProfileScreen(),
+    TimelineScreen(),
+  ];
+
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -19,34 +27,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Screenshot Example'),
-      ),
-      body: Center(
-        child: Text(
-          'Screen Content for Tab $_currentIndex',
-          style: const TextStyle(fontSize: 20),
-        ),
-      ),
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: _onTabTapped,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Tab 1',
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Tab 2',
+            icon: Icon(Icons.home),
+            label: 'Timeline',
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          print("button clicked");
-        },
-        child: const Icon(Icons.camera),
       ),
     );
   }
