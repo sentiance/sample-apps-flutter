@@ -12,8 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_localizations:
-    sdk: flutter
+    
   sentiance_plugin:
     path: '../sentiance.sdk.flutter-bridge'
 

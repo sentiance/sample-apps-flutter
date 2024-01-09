@@ -13,18 +13,11 @@ class SetupScreen extends StatefulWidget {
 }
 
 class _SetupScreenState extends State<SetupScreen> {
-  String message = "Press the button";
   final sentiance = Sentiance();
 
   Future<void> _updateMessage() async {
-    if (!context.mounted) return;
-
-    var userId = await sentiance.getUserId();
-    print("[sample] sentiance: $userId");
     if (await sentiance.userExists()) {
       if (!context.mounted) return;
-
-      print("[sample] user exists redirecting to /home");
       loadHome();
       return;
     }
@@ -51,8 +44,10 @@ class _SetupScreenState extends State<SetupScreen> {
   @override
   void initState() {
     super.initState();
-    print("in the init state");
 
+    /**
+     * Redirect to home screen if user exists
+     */
     Future.microtask(() async {
       if (await sentiance.userExists()) {
         loadHome();
@@ -64,15 +59,22 @@ class _SetupScreenState extends State<SetupScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Setup View"),
+        title: const Text("Sentiance"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const Padding(
+              padding: EdgeInsets.all(24.0),
+              child: Text(
+                'Click the button below to create a Sentiance SDK user.',
+                textAlign: TextAlign.center,
+              ),
+            ),
             ElevatedButton(
               onPressed: _updateMessage,
-              child: Text('Create SDK User'),
+              child: const Text('Create SDK User'),
             ),
           ],
         ),
