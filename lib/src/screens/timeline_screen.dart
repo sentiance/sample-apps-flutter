@@ -14,9 +14,19 @@ class _TimelineScreenState extends State<TimelineScreen> {
         title: const Text('Timeline'),
       ),
       body: const Center(
-        child: Text(
-          'Timeline Content',
-          style: const TextStyle(fontSize: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.access_time,
+              size: 32.0,
+            ),
+            SizedBox(height: 24),
+            Text(
+              'On device timeline coming soon...',
+              style: TextStyle(fontSize: 12),
+            ),
+          ],
         ),
       ),
     );

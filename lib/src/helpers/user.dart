@@ -20,7 +20,6 @@ class ProfileResult {
 
 Future<ProfileResult> fetchProfile() async {
   final sentiance = Sentiance();
-  PermissionStatus permission = await Permission.location.status;
 
   var userId = await sentiance.getUserId();
   var initStatus = await sentiance.getInitState();
@@ -33,7 +32,21 @@ Future<ProfileResult> fetchProfile() async {
     initStatus.toString(),
     startStatus,
     detectionStatus,
-    permission.toString(),
+    await getLocationPermissionStatus(),
     "",
   );
+}
+
+Future<String> getLocationPermissionStatus() async {
+  PermissionStatus permissionWhenInUse =
+      await Permission.locationWhenInUse.status;
+  PermissionStatus permissionAlways = await Permission.locationAlways.status;
+
+  if (permissionAlways.isGranted) {
+    return "Always";
+  } else if (permissionWhenInUse.isGranted) {
+    return "When in use";
+  }
+
+  return (await Permission.location.status).toString();
 }

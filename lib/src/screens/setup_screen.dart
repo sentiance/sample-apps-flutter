@@ -22,6 +22,7 @@ class _SetupScreenState extends State<SetupScreen> {
 
     try {
       await sentiance.createUser(CreateUserInput(result.authCode));
+      await sentiance.enableDetections();
       loadHome();
     } catch (e) {
       print(e);
