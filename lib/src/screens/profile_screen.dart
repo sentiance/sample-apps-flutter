@@ -44,30 +44,26 @@ class _ProfileScreenState extends State<ProfileScreen>
     fetch();
   }
 
-  void fetch() {
-    print("fetching profile information");
-    fetchProfile().then((value) {
-      setState(() {
-        userId = value.userId;
-        initStatus = value.initStatus;
-        startStatus = value.startStatus;
-        detectionStatus = value.detectionStatus;
-        locationPermissionStatus = value.locationPermissionStatus;
-        activityPermissionStatus = value.activityPermissionStatus;
-      });
-    });
+  Future<void> fetch() async {
+    var profile = await fetchProfile();
+    var permission = await Permission.locationAlways.status;
 
-    Permission.locationAlways.status.then((value) {
-      setState(() {
-        enablePermissionButton = !value.isGranted;
-      });
+    setState(() {
+      userId = profile.userId;
+      initStatus = profile.initStatus;
+      startStatus = profile.startStatus;
+      detectionStatus = profile.detectionStatus;
+      locationPermissionStatus = profile.locationPermissionStatus;
+      activityPermissionStatus = profile.activityPermissionStatus;
+
+      // Enable request permission button if permission is not granted
+      enablePermissionButton = !permission.isGranted;
     });
 
     determineRequestPermissionTitle();
   }
 
   void loadSetup() {
-    if (!context.mounted) return;
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => SetupScreen()),
@@ -78,11 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   List<Widget> getRequestPermissions() {
     return [
       ElevatedButton(
-        onPressed: enablePermissionButton
-            ? () {
-                requestPermission();
-              }
-            : null,
+        onPressed: enablePermissionButton ? requestPermission : null,
         child: Text(requestButtonTitle),
       )
     ];
@@ -160,21 +152,29 @@ class _ProfileScreenState extends State<ProfileScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => fetch(),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: getChildren(),
+      appBar: _buildAppBar(),
+      body: _buildBody(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: const Text('Profile'),
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(Icons.refresh),
+          onPressed: () => fetch(),
         ),
+      ],
+    );
+  }
+
+  Widget _buildBody() {
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: getChildren(),
       ),
     );
   }

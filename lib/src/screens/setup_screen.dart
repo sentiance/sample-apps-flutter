@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sentiance_plugin/sentiance_plugin.dart';
 import 'package:sentiance_plugin/models/create_user_input.dart';
-import 'home_screen.dart';
 
+import 'home_screen.dart';
 import '../helpers/auth.dart';
 
 class SetupScreen extends StatefulWidget {
@@ -17,19 +18,40 @@ class SetupScreen extends StatefulWidget {
 class _SetupScreenState extends State<SetupScreen> {
   final sentiance = Sentiance();
 
-  Future<void> _updateMessage() async {
+  @override
+  void initState() {
+    super.initState();
+    _redirectToHomeIfUserExists();
+  }
+
+  // Redirect to home screen if user exists
+  void _redirectToHomeIfUserExists() async {
+    if (await sentiance.userExists()) {
+      _loadHome();
+    }
+  }
+
+  // ***********
+  // Start here.
+  // ***********
+  //
+  // This handler is invoked when "Create User" is tapped.
+  // It additionally demonstrates how to create a sentiance user.
+  // The workflow communicates with the provided sample backend
+  // service to obtain authentication code.
+  Future<void> _onCreateUserClick() async {
     final AuthCodeResult result = await fetchAuthCode();
 
     try {
       await sentiance.createUser(CreateUserInput(result.authCode));
       await sentiance.enableDetections();
-      loadHome();
+      _loadHome();
     } catch (e) {
       print(e);
     }
   }
 
-  void loadHome() {
+  void _loadHome() {
     if (!context.mounted) return;
     Navigator.pushAndRemoveUntil(
       context,
@@ -39,43 +61,62 @@ class _SetupScreenState extends State<SetupScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-
-    /**
-     * Redirect to home screen if user exists
-     */
-    Future.microtask(() async {
-      if (await sentiance.userExists()) {
-        loadHome();
-      }
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Sentiance"),
+      appBar: _buildAppBar(),
+      body: _buildBody(),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: const Text("Sample Application"),
+    );
+  }
+
+  Widget _buildBody() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          _buildGreetingText(),
+          _buildCreateUserButton(),
+          _buildLogo(),
+        ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(24.0),
-              child: Text(
-                'Click the button below to create a Sentiance SDK user.',
-                textAlign: TextAlign.center,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: _updateMessage,
-              child: const Text('Create SDK User'),
-            ),
-          ],
+    );
+  }
+
+  Widget _buildGreetingText() {
+    return const Padding(
+      padding: EdgeInsets.all(40.0),
+      child: Text(
+        'Hello there!',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 24,
         ),
       ),
+    );
+  }
+
+  Widget _buildCreateUserButton() {
+    return ElevatedButton(
+      onPressed: _onCreateUserClick,
+      child: const Text('Create SDK User'),
+    );
+  }
+
+  Widget _buildLogo() {
+    return Column(
+      children: [
+        const SizedBox(height: 40),
+        SvgPicture.asset(
+          'assets/images/sentiance_logo.svg',
+          width: 120,
+        ),
+        const SizedBox(height: 80),
+      ],
     );
   }
 }

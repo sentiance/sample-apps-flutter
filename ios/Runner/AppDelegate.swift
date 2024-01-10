@@ -11,9 +11,9 @@ import sentiance_plugin
     GeneratedPluginRegistrant.register(with: self)
       let result = SentianceHelper.shared.initialize()
       if result.isSuccessful {
-          print("[sample] sdk initialized")
+          print("[sentiance] sdk initialized")
       }  else {
-          print("[sample] error initializing sdk")
+          print("[sentiance] error initializing sdk")
       }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
