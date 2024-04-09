@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sentiance_plugin/sentiance_plugin.dart';
-import 'package:sentiance_plugin/models/create_user_input.dart';
 
 import 'home_screen.dart';
 import '../helpers/auth.dart';
@@ -16,7 +15,7 @@ class SetupScreen extends StatefulWidget {
 }
 
 class _SetupScreenState extends State<SetupScreen> {
-  final sentiance = Sentiance();
+  final sentiance = SentiancePlugin();
 
   @override
   void initState() {
@@ -27,6 +26,7 @@ class _SetupScreenState extends State<SetupScreen> {
   // Redirect to home screen if user exists
   void _redirectToHomeIfUserExists() async {
     if (await sentiance.userExists()) {
+      print("user exists... redirecting to home page");
       _loadHome();
     }
   }
@@ -40,10 +40,10 @@ class _SetupScreenState extends State<SetupScreen> {
   // The workflow communicates with the provided sample backend
   // service to obtain authentication code.
   Future<void> _onCreateUserClick() async {
-    final AuthCodeResult result = await fetchAuthCode();
-
+    print("creating user ...");
     try {
-      await sentiance.createUser(CreateUserInput(result.authCode));
+      final AuthCodeResult result = await fetchAuthCode();
+      await sentiance.createUser(CreateUserOptions(authCode: result.authCode));
       await sentiance.enableDetections();
       _loadHome();
     } catch (e) {

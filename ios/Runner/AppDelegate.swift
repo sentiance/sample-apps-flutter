@@ -8,8 +8,8 @@ import sentiance_plugin
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    GeneratedPluginRegistrant.register(with: self)
-      let result = SentianceHelper.shared.initialize()
+      GeneratedPluginRegistrant.register(with: self)
+      let result = SentiancePlugin.shared.initialize()
       if result.isSuccessful {
           print("[sentiance] sdk initialized")
       }  else {

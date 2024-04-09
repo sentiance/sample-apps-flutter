@@ -1,8 +1,9 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:sentiance_plugin/sentiance_plugin.dart';
+// import 'package:sentiance_plugin/sentiance_plugin.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sentiance_plugin/sentiance_plugin.dart';
 
 import 'setup_screen.dart';
 import '../widgets/label_text.dart';
@@ -15,7 +16,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen>
     with WidgetsBindingObserver {
-  final sentiance = Sentiance();
+  final sentiance = SentiancePlugin();
+
   String userId = "";
   String initStatus = "";
   String startStatus = "";
@@ -118,8 +120,6 @@ class _ProfileScreenState extends State<ProfileScreen>
     ];
     Map<String, String> data = {
       "User ID": userId,
-      "Init Status": initStatus,
-      "Start Status": startStatus,
       "Detection Status": detectionStatus,
       "Location Permission Status": locationPermissionStatus
     };
@@ -170,12 +170,13 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   Widget _buildBody() {
-    return Padding(
+    return SingleChildScrollView(
+        child: Padding(
       padding: const EdgeInsets.all(24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: getChildren(),
       ),
-    );
+    ));
   }
 }

@@ -1,5 +1,6 @@
-import 'package:sentiance_plugin/sentiance_plugin.dart';
+// import 'package:sentiance_plugin/sentiance_plugin.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sentiance_plugin/sentiance_plugin.dart';
 
 class ProfileResult {
   final String userId;
@@ -19,13 +20,14 @@ class ProfileResult {
 }
 
 Future<ProfileResult> fetchProfile() async {
-  final sentiance = Sentiance();
+  final sentiance = SentiancePlugin();
 
   var userId = await sentiance.getUserId();
-  var initStatus = await sentiance.getInitState();
-  var sdkStatus = await sentiance.getSdkStatus();
-  var startStatus = sdkStatus.startStatus;
-  var detectionStatus = sdkStatus.detectionStatus;
+  var initStatus = ""; //await sentiance.getInitState();
+  var sdkStatus = ""; //await sentiance.getSdkStatus();
+  var startStatus = ""; //sdkStatus.startStatus;
+  var detectionStatus =
+      (await sentiance.getSdkStatus()).detectionStatus.toString();
 
   return ProfileResult(
     userId!,
