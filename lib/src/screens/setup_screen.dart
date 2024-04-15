@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sentiance_plugin/sentiance_plugin.dart';
+import 'package:sentiance_core/sentiance_core.dart';
 
 import 'home_screen.dart';
 import '../helpers/auth.dart';
@@ -15,7 +15,7 @@ class SetupScreen extends StatefulWidget {
 }
 
 class _SetupScreenState extends State<SetupScreen> {
-  final sentiance = SentiancePlugin();
+  final sentiance = SentianceCore();
 
   @override
   void initState() {

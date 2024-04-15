@@ -10,7 +10,7 @@ class AuthCodeResult {
 }
 
 Future<AuthCodeResult> fetchAuthCode() async {
-  final response = await http.get(Uri.parse('http://localhost:8000/auth/code'));
+  final response = await http.get(Uri.parse('http://localhost:8001/auth/code'));
 
   if (response.statusCode == 200) {
     final Map<String, dynamic> data = json.decode(response.body);

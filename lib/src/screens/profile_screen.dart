@@ -1,9 +1,9 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-// import 'package:sentiance_plugin/sentiance_plugin.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:sentiance_plugin/sentiance_plugin.dart';
+import 'package:sentiance_core/sentiance_core.dart';
+import 'package:sentiance_user_context/sentiance_user_context.dart';
 
 import 'setup_screen.dart';
 import '../widgets/label_text.dart';
@@ -16,14 +16,15 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen>
     with WidgetsBindingObserver {
-  final sentiance = SentiancePlugin();
+  final sentiance = SentianceCore();
+  final userContext = SentianceUserContext();
 
-  String userId = "";
-  String initStatus = "";
-  String startStatus = "";
-  String detectionStatus = "";
+  String userId = "-";
+  String detectionStatus = "-";
   String locationPermissionStatus = "";
   String activityPermissionStatus = "";
+  String sdkVersion = "";
+  String lastKnownLocation = "-";
   bool enablePermissionButton = false;
   String requestButtonTitle = "...";
 
@@ -49,14 +50,21 @@ class _ProfileScreenState extends State<ProfileScreen>
   Future<void> fetch() async {
     var profile = await fetchProfile();
     var permission = await Permission.locationAlways.status;
+    var version = await sentiance.getVersion();
+    var uc = await userContext.requestUserContext();
 
     setState(() {
       userId = profile.userId;
-      initStatus = profile.initStatus;
-      startStatus = profile.startStatus;
       detectionStatus = profile.detectionStatus;
       locationPermissionStatus = profile.locationPermissionStatus;
       activityPermissionStatus = profile.activityPermissionStatus;
+      sdkVersion = version;
+
+      if (uc.lastKnownLocation?.latitude != null &&
+          uc.lastKnownLocation?.longitude != null) {
+        lastKnownLocation =
+            "${uc.lastKnownLocation?.latitude}, ${uc.lastKnownLocation?.longitude}";
+      }
 
       // Enable request permission button if permission is not granted
       enablePermissionButton = !permission.isGranted;
@@ -120,7 +128,9 @@ class _ProfileScreenState extends State<ProfileScreen>
     ];
     Map<String, String> data = {
       "User ID": userId,
+      "SDK Version": sdkVersion,
       "Detection Status": detectionStatus,
+      "Last Known Location": lastKnownLocation,
       "Location Permission Status": locationPermissionStatus
     };
 
