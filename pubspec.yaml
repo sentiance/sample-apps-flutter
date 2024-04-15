@@ -16,8 +16,9 @@ dependencies:
   flutter_svg: ^2.0.9
   http: ^1.1.0
   permission_handler: ^11.0.1
-  sentiance_plugin:
-    path: '../sentiance.sdk.flutter-bridge'
+  sentiance_core:
+  sentiance_user_context:
+  sentiance_event_timeline:
 
 dev_dependencies:
   flutter_test:

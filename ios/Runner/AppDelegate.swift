@@ -1,6 +1,7 @@
 import UIKit
 import Flutter
-import sentiance_plugin
+import SENTSDK
+import sentiance_core
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -9,7 +10,7 @@ import sentiance_plugin
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
       GeneratedPluginRegistrant.register(with: self)
-      let result = SentiancePlugin.shared.initialize()
+      let result = SentianceCorePlugin.shared.initialize()
       if result.isSuccessful {
           print("[sentiance] sdk initialized")
       }  else {
@@ -17,4 +18,5 @@ import sentiance_plugin
       }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
+
 }

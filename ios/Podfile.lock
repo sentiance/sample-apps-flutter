@@ -2,11 +2,17 @@ PODS:
   - Flutter (1.0.0)
   - permission_handler_apple (9.1.1):
     - Flutter
-  - Protobuf (3.25.3)
-  - sentiance_plugin (0.0.1):
+  - Protobuf (3.26.1)
+  - sentiance_core (0.0.1):
     - Flutter
-    - SENTSDK (~> 6.6)
-  - SENTSDK (6.6.2):
+    - SENTSDK (~> 6.7.0)
+  - sentiance_event_timeline (0.0.1):
+    - Flutter
+    - SENTSDK (~> 6.7.0)
+  - sentiance_user_context (0.0.1):
+    - Flutter
+    - SENTSDK (~> 6.7.0)
+  - SENTSDK (6.7.0):
     - Protobuf (~> 3.18)
     - TensorFlowLiteC (~> 2.7.0)
     - UnzipKit (~> 1.9)
@@ -20,7 +26,9 @@ PODS:
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
-  - sentiance_plugin (from `.symlinks/plugins/sentiance_plugin/ios`)
+  - sentiance_core (from `.symlinks/plugins/sentiance_core/ios`)
+  - sentiance_event_timeline (from `.symlinks/plugins/sentiance_event_timeline/ios`)
+  - sentiance_user_context (from `.symlinks/plugins/sentiance_user_context/ios`)
 
 SPEC REPOS:
   trunk:
@@ -34,15 +42,21 @@ EXTERNAL SOURCES:
     :path: Flutter
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
-  sentiance_plugin:
-    :path: ".symlinks/plugins/sentiance_plugin/ios"
+  sentiance_core:
+    :path: ".symlinks/plugins/sentiance_core/ios"
+  sentiance_event_timeline:
+    :path: ".symlinks/plugins/sentiance_event_timeline/ios"
+  sentiance_user_context:
+    :path: ".symlinks/plugins/sentiance_user_context/ios"
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
-  Protobuf: 8e9074797a13c484a79959fdb819ef4ae6da7dbe
-  sentiance_plugin: f3a4620069bbe486d54daf236bae9b88a4a2746d
-  SENTSDK: cf7b177ccb8b44aeb770bcefa6c0eee0aadf4725
+  Protobuf: a53f5173a603075b3522a5c50be63a67a5f3353a
+  sentiance_core: 7227a9fbc45d962705329896126ffc59f3f5f1aa
+  sentiance_event_timeline: 34bf813b2f97392704121ac52161796ff1062448
+  sentiance_user_context: c20c6b4285a79a543ebf70b814880e8071c7b53e
+  SENTSDK: 283c584869b58d94bd478418c88021dd87036777
   TensorFlowLiteC: 50d75ed3640c15dcfbaf88ca4326297b445e00a1
   UnzipKit: 40e2c20a4928f0cfde5eb05a1108c08ee3e16bdc
 
