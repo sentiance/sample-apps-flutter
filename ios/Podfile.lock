@@ -1,9 +1,18 @@
 PODS:
   - Flutter (1.0.0)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - permission_handler_apple (9.1.1):
     - Flutter
   - Protobuf (3.26.1)
   - sentiance_core (0.0.1):
+    - Flutter
+    - SENTSDK (~> 6.7.0)
+  - sentiance_crash_detection (0.0.1):
+    - Flutter
+    - SENTSDK (~> 6.7.0)
+  - sentiance_driving_insights (0.0.1):
     - Flutter
     - SENTSDK (~> 6.7.0)
   - sentiance_event_timeline (0.0.1):
@@ -25,8 +34,11 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - sentiance_core (from `.symlinks/plugins/sentiance_core/ios`)
+  - sentiance_crash_detection (from `.symlinks/plugins/sentiance_crash_detection/ios`)
+  - sentiance_driving_insights (from `.symlinks/plugins/sentiance_driving_insights/ios`)
   - sentiance_event_timeline (from `.symlinks/plugins/sentiance_event_timeline/ios`)
   - sentiance_user_context (from `.symlinks/plugins/sentiance_user_context/ios`)
 
@@ -40,10 +52,16 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   sentiance_core:
     :path: ".symlinks/plugins/sentiance_core/ios"
+  sentiance_crash_detection:
+    :path: ".symlinks/plugins/sentiance_crash_detection/ios"
+  sentiance_driving_insights:
+    :path: ".symlinks/plugins/sentiance_driving_insights/ios"
   sentiance_event_timeline:
     :path: ".symlinks/plugins/sentiance_event_timeline/ios"
   sentiance_user_context:
@@ -51,9 +69,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
   permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
   Protobuf: a53f5173a603075b3522a5c50be63a67a5f3353a
-  sentiance_core: 7227a9fbc45d962705329896126ffc59f3f5f1aa
+  sentiance_core: c81b95a2f09efa73bab17758d221c4db5fa6f574
+  sentiance_crash_detection: 960ec78305a8d595f9a07276b7c4a6b11387fbb6
+  sentiance_driving_insights: 0bc1e8b06af64bba5760f7ece28ea43f1ca0bcf2
   sentiance_event_timeline: 34bf813b2f97392704121ac52161796ff1062448
   sentiance_user_context: c20c6b4285a79a543ebf70b814880e8071c7b53e
   SENTSDK: 283c584869b58d94bd478418c88021dd87036777

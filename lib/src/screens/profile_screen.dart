@@ -1,9 +1,11 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:sample_apps_flutter/src/helpers/utils.dart';
 import 'package:sentiance_core/sentiance_core.dart';
 import 'package:sentiance_user_context/sentiance_user_context.dart';
+import 'package:sentiance_event_timeline/sentiance_event_timeline.dart'
+    as timeline;
+import 'package:sentiance_crash_detection/sentiance_crash_detection.dart';
 
 import 'setup_screen.dart';
 import '../widgets/label_text.dart';
@@ -18,6 +20,7 @@ class _ProfileScreenState extends State<ProfileScreen>
     with WidgetsBindingObserver {
   final sentiance = SentianceCore();
   final userContext = SentianceUserContext();
+  final sentianceCrashDetection = SentianceCrashDetection();
 
   String userId = "-";
   String detectionStatus = "-";
@@ -51,7 +54,24 @@ class _ProfileScreenState extends State<ProfileScreen>
     var profile = await fetchProfile();
     var permission = await Permission.locationAlways.status;
     var version = await sentiance.getVersion();
-    var uc = await userContext.requestUserContext();
+
+    try {
+      var uc = await userContext.requestUserContext();
+
+      setState(() {
+        if (uc.lastKnownLocation?.latitude != null &&
+            uc.lastKnownLocation?.longitude != null) {
+          lastKnownLocation =
+              "${uc.lastKnownLocation?.latitude}, ${uc.lastKnownLocation?.longitude}";
+        }
+
+        lastKnownLocation = formatGeoLocation(timeline.GeoLocation(
+            latitude: uc.lastKnownLocation?.latitude,
+            longitude: uc.lastKnownLocation?.longitude));
+      });
+    } catch (e) {
+      print("sentiance log: error: $e");
+    }
 
     setState(() {
       userId = profile.userId;
@@ -59,12 +79,6 @@ class _ProfileScreenState extends State<ProfileScreen>
       locationPermissionStatus = profile.locationPermissionStatus;
       activityPermissionStatus = profile.activityPermissionStatus;
       sdkVersion = version;
-
-      if (uc.lastKnownLocation?.latitude != null &&
-          uc.lastKnownLocation?.longitude != null) {
-        lastKnownLocation =
-            "${uc.lastKnownLocation?.latitude}, ${uc.lastKnownLocation?.longitude}";
-      }
 
       // Enable request permission button if permission is not granted
       enablePermissionButton = !permission.isGranted;
@@ -88,6 +102,31 @@ class _ProfileScreenState extends State<ProfileScreen>
         child: Text(requestButtonTitle),
       )
     ];
+  }
+
+  Widget getSimulateCrashButton() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        const Text(
+          "Crash Detection",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        InkWell(
+          onTap: simulateCrash,
+          child: Text(
+            "Simulate a crash",
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  simulateCrash() async {
+    await sentianceCrashDetection.invokeDummyVehicleCrash();
   }
 
   determineRequestPermissionTitle() async {
@@ -131,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen>
       "SDK Version": sdkVersion,
       "Detection Status": detectionStatus,
       "Last Known Location": lastKnownLocation,
-      "Location Permission Status": locationPermissionStatus
+      "Location Permission Status": locationPermissionStatus,
     };
 
     data.forEach((key, value) {
@@ -140,6 +179,8 @@ class _ProfileScreenState extends State<ProfileScreen>
         const SizedBox(height: 24)
       ]);
     });
+
+    items.addAll([getSimulateCrashButton(), const SizedBox(height: 24)]);
 
     items.addAll(getRequestPermissions());
     items.addAll([

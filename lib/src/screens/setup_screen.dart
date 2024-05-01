@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sample_apps_flutter/src/helpers/log.dart';
 import 'package:sentiance_core/sentiance_core.dart';
 
 import 'home_screen.dart';
@@ -40,11 +39,14 @@ class _SetupScreenState extends State<SetupScreen> {
   // The workflow communicates with the provided sample backend
   // service to obtain authentication code.
   Future<void> _onCreateUserClick() async {
-    print("creating user ...");
+    writeLog("creating user");
+    print("creating user");
     try {
-      final AuthCodeResult result = await fetchAuthCode();
+      final AuthCodeResult result = (await fetchAuthCode());
+      print("auth code: ${result.authCode}");
       await sentiance.createUser(CreateUserOptions(authCode: result.authCode));
       await sentiance.enableDetections();
+      writeLog("user created");
       _loadHome();
     } catch (e) {
       print(e);

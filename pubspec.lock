@@ -121,6 +121,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.1"
+  ffi:
+    dependency: transitive
+    description:
+      name: ffi
+      sha256: "493f37e7df1804778ff3a53bd691d8692ddf69702cf4c1c1096a2e41b4779e21"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.2"
   file:
     dependency: transitive
     description:
@@ -275,22 +283,70 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  path_provider:
+    dependency: "direct main"
+    description:
+      name: path_provider
+      sha256: c9e7d3a4cd1410877472158bee69963a4579f78b68c65a2b7d40d1a7a88bb161
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.3"
+  path_provider_android:
+    dependency: transitive
+    description:
+      name: path_provider_android
+      sha256: a248d8146ee5983446bf03ed5ea8f6533129a12b11f12057ad1b4a67a2b3b41d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.4"
+  path_provider_foundation:
+    dependency: transitive
+    description:
+      name: path_provider_foundation
+      sha256: "5a7999be66e000916500be4f15a3633ebceb8302719b47b9cc49ce924125350f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.2"
+  path_provider_linux:
+    dependency: transitive
+    description:
+      name: path_provider_linux
+      sha256: f7a1fe3a634fe7734c8d3f2766ad746ae2a2884abe22e241a8b301bf5cac3279
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
+  path_provider_platform_interface:
+    dependency: transitive
+    description:
+      name: path_provider_platform_interface
+      sha256: "88f5779f72ba699763fa3a3b06aa4bf6de76c8e5de842cf6f29e2e06476c2334"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.2"
+  path_provider_windows:
+    dependency: transitive
+    description:
+      name: path_provider_windows
+      sha256: "8bc9f22eee8690981c22aa7fc602f5c85b497a6fb2ceb35ee5a5e5ed85ad8170"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.1"
   permission_handler:
     dependency: "direct main"
     description:
       name: permission_handler
-      sha256: "284a66179cabdf942f838543e10413246f06424d960c92ba95c84439154fcac8"
+      sha256: bc56bfe9d3f44c3c612d8d393bd9b174eb796d706759f9b495ac254e4294baa5
       url: "https://pub.dev"
     source: hosted
-    version: "11.0.1"
+    version: "10.4.5"
   permission_handler_android:
     dependency: transitive
     description:
       name: permission_handler_android
-      sha256: f9fddd3b46109bd69ff3f9efa5006d2d309b7aec0f3c1c5637a60a2d5659e76e
+      sha256: "59c6322171c29df93a22d150ad95f3aa19ed86542eaec409ab2691b8f35f9a47"
       url: "https://pub.dev"
     source: hosted
-    version: "11.1.0"
+    version: "10.3.6"
   permission_handler_apple:
     dependency: transitive
     description:
@@ -331,6 +387,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "18.0.0"
+  platform:
+    dependency: transitive
+    description:
+      name: platform
+      sha256: "12220bb4b65720483f8fa9450b4332347737cf8213dd2840d8b2c823e47243ec"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.4"
   plugin_platform_interface:
     dependency: transitive
     description:
@@ -350,27 +414,38 @@ packages:
   sentiance_core:
     dependency: "direct main"
     description:
-      name: sentiance_core
-      sha256: "7542a64bd347a16d1c3c1c48816714be9961e5d9857eb867452bb0bfb3f78278"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.12"
+      path: "../sentiance.sdk.flutter-bridge/packages/sentiance_core"
+      relative: true
+    source: path
+    version: "0.0.18"
+  sentiance_crash_detection:
+    dependency: "direct main"
+    description:
+      path: "../sentiance.sdk.flutter-bridge/packages/sentiance_crash_detection"
+      relative: true
+    source: path
+    version: "0.0.18"
+  sentiance_driving_insights:
+    dependency: "direct main"
+    description:
+      path: "../sentiance.sdk.flutter-bridge/packages/sentiance_driving_insights"
+      relative: true
+    source: path
+    version: "0.0.18"
   sentiance_event_timeline:
     dependency: "direct main"
     description:
-      name: sentiance_event_timeline
-      sha256: "990762a93c936a9e7bec572ca6e05e4e7add8695bf94fb69b75328886fcf5de5"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.12"
+      path: "../sentiance.sdk.flutter-bridge/packages/sentiance_event_timeline"
+      relative: true
+    source: path
+    version: "0.0.18"
   sentiance_user_context:
     dependency: "direct main"
     description:
-      name: sentiance_user_context
-      sha256: "430d5bc543c91b19399f7f8b8a2d3d4cdf78082c50362966649958aaeb0be094"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.12"
+      path: "../sentiance.sdk.flutter-bridge/packages/sentiance_user_context"
+      relative: true
+    source: path
+    version: "0.0.18"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -480,6 +555,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  win32:
+    dependency: transitive
+    description:
+      name: win32
+      sha256: "0a989dc7ca2bb51eac91e8fd00851297cfffd641aa7538b165c62637ca0eaa4a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.4.0"
+  xdg_directories:
+    dependency: transitive
+    description:
+      name: xdg_directories
+      sha256: faea9dee56b520b55a566385b84f2e8de55e7496104adada9962e0bd11bcff1d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   xml:
     dependency: transitive
     description:
@@ -498,4 +589,4 @@ packages:
     version: "3.1.2"
 sdks:
   dart: ">=3.3.3 <4.0.0"
-  flutter: ">=3.7.0-0"
+  flutter: ">=3.16.0"

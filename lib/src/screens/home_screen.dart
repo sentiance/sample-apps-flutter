@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_apps_flutter/src/screens/logs_screen.dart';
 
 import './profile_screen.dart';
 import './timeline_screen.dart';
@@ -16,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _children = [
     ProfileScreen(),
     TimelineScreen(),
+    LogsScreen(),
   ];
 
   void _onTabTapped(int index) {
@@ -48,6 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: 'Timeline',
+        ),
+        // logs
+        BottomNavigationBarItem(
+          icon: Icon(Icons.list),
+          label: 'Logs',
         ),
       ],
     );

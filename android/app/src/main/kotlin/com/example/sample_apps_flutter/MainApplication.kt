@@ -1,22 +1,27 @@
 package com.example.sample_apps_flutter
 
-import android.util.Log
 import io.flutter.app.FlutterApplication
 import com.sentiance.core_plugin.CorePlugin
+import com.sentiance.user_context_plugin.UserContextPlugin
+import com.sentiance.event_timeline_plugin.EventTimelinePlugin
+import com.sentiance.driving_insights_plugin.DrivingInsightsPlugin
+import com.sentiance.crash_detection_plugin.CrashDetectionPlugin
 
 class MainApplication : FlutterApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.v("[Sentiance]", "MainApplication onCreate")
+        initializeSentiance()
+    }
 
-        var result = CorePlugin.initialize(this)
+    fun initializeSentiance() {
+        val dartLibrary = "package:sample_apps_flutter/background.dart"
 
-        if (result.isSuccessful) {
-            Log.v("[Sentiance]", "initialization successful");
-        } else {
-            Log.v("[Sentiance]", "initialization failed");
-        }
+        CorePlugin.initialize(this)
+        UserContextPlugin.initializeListener(this, dartLibrary, "registerUserContextListener")
+        EventTimelinePlugin.initializeListener(this, dartLibrary, "registerEventTimelineListener")
+        DrivingInsightsPlugin.initializeListener(this, dartLibrary, "registerDrivingInsightsListener")
+        CrashDetectionPlugin.initializeListener(this, dartLibrary, "registerCrashDetectionListener")
     }
 
 }

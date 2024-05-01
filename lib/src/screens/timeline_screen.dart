@@ -2,6 +2,9 @@ import 'dart:math';
 
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:sample_apps_flutter/src/helpers/log.dart';
+import 'package:sample_apps_flutter/src/helpers/utils.dart';
+import 'package:sentiance_driving_insights/sentiance_driving_insights.dart';
 import 'package:sentiance_user_context/sentiance_user_context.dart';
 import 'package:sentiance_event_timeline/sentiance_event_timeline.dart';
 
@@ -14,6 +17,7 @@ class TimelineScreen extends StatefulWidget {
 class _TimelineScreenState extends State<TimelineScreen> {
   final sentianceUserContext = SentianceUserContext();
   final sentianceEventTimeline = SentianceEventTimeline();
+  final sentianceDrivingInsights = SentianceDrivingInsights();
 
   List<TimelineEvent?> events = [];
 
@@ -32,15 +36,42 @@ class _TimelineScreenState extends State<TimelineScreen> {
     });
   }
 
+  String getEventDetails(TimelineEvent event) {
+    final DateFormat outputFormat = DateFormat("MMM, dd. h:mm a");
+    final localDate =
+        DateTime.fromMicrosecondsSinceEpoch(event.startTimeMs).toLocal();
+    final String localTime = outputFormat.format(localDate);
+
+    sentianceDrivingInsights
+        .getDrivingInsights(event.id)
+        .then((value) => {print("sentiance log: insights: $value")});
+
+    List<String> details = [
+      "Date: $localTime",
+      "Duration (s): ${event.endTimeMs != null ? event.durationInSeconds : "-"}",
+    ];
+
+    if (event.type == TimelineEventType.stationary) {
+      details.addAll([
+        "Location: ${formatGeoLocation(event.location)}",
+      ]);
+    }
+
+    if (event.type == TimelineEventType.inTransport) {
+      details.addAll([
+        "Mode: ${event.transportMode}",
+        "Waypoints: ${event.waypoints?.length}",
+        "Distance (m): ${event.distance}",
+      ]);
+    }
+    return details.join("\n");
+  }
+
   Widget _buildTimeline() {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: events.map((item) {
           item!;
-
-          final DateFormat outputFormat = DateFormat("MMM, dd. h:mm a");
-          final localDate = DateTime.parse(item.startTime).toLocal();
-          final String localTime = outputFormat.format(localDate);
 
           return Column(
             children: <Widget>[
@@ -50,7 +81,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
                   style: const TextStyle(
                       fontSize: 14, fontWeight: FontWeight.bold),
                 ),
-                subtitle: Text(localTime),
+                subtitle: Text(getEventDetails(item)),
               ),
               Divider(color: Colors.grey.shade300),
             ],
