@@ -17,15 +17,10 @@ dependencies:
   http: ^1.1.0
   permission_handler: ^10.0.0
   sentiance_core:
-    path: ../sentiance.sdk.flutter-bridge/packages/sentiance_core
   sentiance_user_context:
-    path: ../sentiance.sdk.flutter-bridge/packages/sentiance_user_context
   sentiance_event_timeline:
-    path: ../sentiance.sdk.flutter-bridge/packages/sentiance_event_timeline
   sentiance_driving_insights:
-    path: '../sentiance.sdk.flutter-bridge/packages/sentiance_driving_insights'
   sentiance_crash_detection:
-    path: '../sentiance.sdk.flutter-bridge/packages/sentiance_crash_detection'
 
   path_provider: ^2.0.11
 
