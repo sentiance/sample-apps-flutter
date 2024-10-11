@@ -3,8 +3,6 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:sample_apps_flutter/src/helpers/utils.dart';
 import 'package:sentiance_core/sentiance_core.dart';
 import 'package:sentiance_user_context/sentiance_user_context.dart';
-import 'package:sentiance_event_timeline/sentiance_event_timeline.dart'
-    as timeline;
 import 'package:sentiance_crash_detection/sentiance_crash_detection.dart';
 
 import 'setup_screen.dart';
@@ -65,9 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen>
               "${uc.lastKnownLocation?.latitude}, ${uc.lastKnownLocation?.longitude}";
         }
 
-        lastKnownLocation = formatGeoLocation(timeline.GeoLocation(
-            latitude: uc.lastKnownLocation?.latitude,
-            longitude: uc.lastKnownLocation?.longitude));
+        lastKnownLocation = formatGeoLocation(uc.lastKnownLocation);
       });
     } catch (e) {
       print("sentiance log: error: $e");

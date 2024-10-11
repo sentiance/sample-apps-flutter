@@ -1,4 +1,4 @@
-import 'package:sentiance_event_timeline/sentiance_event_timeline.dart';
+import 'package:sentiance_core/sentiance_core.dart' show GeoLocation;
 
 String formatGeoLocation(GeoLocation? location, {int fixed = 4}) {
   if (location == null) {

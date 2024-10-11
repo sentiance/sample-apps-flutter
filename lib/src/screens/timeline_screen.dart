@@ -1,12 +1,9 @@
-import 'dart:math';
-
-import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:sample_apps_flutter/src/helpers/log.dart';
+import 'package:intl/intl.dart';
 import 'package:sample_apps_flutter/src/helpers/utils.dart';
 import 'package:sentiance_driving_insights/sentiance_driving_insights.dart';
-import 'package:sentiance_user_context/sentiance_user_context.dart';
 import 'package:sentiance_event_timeline/sentiance_event_timeline.dart';
+import 'package:sentiance_user_context/sentiance_user_context.dart';
 
 class TimelineScreen extends StatefulWidget {
   @override
@@ -28,8 +25,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
   }
 
   Future<void> fetch() async {
-    final _events = await sentianceEventTimeline.getTimelineEvents(
-        0, DateTime.now().millisecondsSinceEpoch);
+    final _events = await sentianceEventTimeline.getTimelineEvents(0, DateTime.now().millisecondsSinceEpoch);
 
     setState(() {
       events = _events.reversed.toList().take(30).toList();
@@ -38,29 +34,26 @@ class _TimelineScreenState extends State<TimelineScreen> {
 
   String getEventDetails(TimelineEvent event) {
     final DateFormat outputFormat = DateFormat("MMM, dd. h:mm a");
-    final localDate =
-        DateTime.fromMicrosecondsSinceEpoch(event.startTimeMs).toLocal();
+    final localDate = DateTime.fromMicrosecondsSinceEpoch(event.startTimeMs).toLocal();
     final String localTime = outputFormat.format(localDate);
 
-    sentianceDrivingInsights
-        .getDrivingInsights(event.id)
-        .then((value) => {print("sentiance log: insights: $value")});
+    sentianceDrivingInsights.getDrivingInsights(event.id).then((value) => {print("sentiance log: insights: $value")});
 
     List<String> details = [
       "Date: $localTime",
       "Duration (s): ${event.endTimeMs != null ? event.durationInSeconds : "-"}",
     ];
 
-    if (event.type == TimelineEventType.stationary) {
+    if (event is StationaryEvent) {
       details.addAll([
         "Location: ${formatGeoLocation(event.location)}",
       ]);
     }
 
-    if (event.type == TimelineEventType.inTransport) {
+    if (event is TransportEvent) {
       details.addAll([
         "Mode: ${event.transportMode}",
-        "Waypoints: ${event.waypoints?.length}",
+        "Waypoints: ${event.waypoints.length}",
         "Distance (m): ${event.distance}",
       ]);
     }
@@ -77,9 +70,8 @@ class _TimelineScreenState extends State<TimelineScreen> {
             children: <Widget>[
               ListTile(
                 title: Text(
-                  item!.type.toString(),
-                  style: const TextStyle(
-                      fontSize: 14, fontWeight: FontWeight.bold),
+                  item.runtimeType.toString(),
+                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
                 subtitle: Text(getEventDetails(item)),
               ),
@@ -114,8 +106,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
       appBar: AppBar(
         title: const Text('Timeline'),
       ),
-      body: SingleChildScrollView(
-          child: events.isNotEmpty ? _buildTimeline() : emptyTimeline()),
+      body: SingleChildScrollView(child: events.isNotEmpty ? _buildTimeline() : emptyTimeline()),
     );
   }
 }
