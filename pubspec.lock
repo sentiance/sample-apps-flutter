@@ -58,10 +58,10 @@ packages:
     dependency: transitive
     description:
       name: built_value
-      sha256: c7913a9737ee4007efedaffc968c049fd0f3d0e49109e778edc10de9426005cb
+      sha256: "28a712df2576b63c6c005c465989a348604960c0958d28be5303ba9baa841ac2"
       url: "https://pub.dev"
     source: hosted
-    version: "8.9.2"
+    version: "8.9.3"
   characters:
     dependency: transitive
     description:
@@ -284,10 +284,10 @@ packages:
     dependency: transitive
     description:
       name: package_config
-      sha256: "1c5b77ccc91e4823a5af61ee74e6b972db1ef98c2ff5a18d3161c982a55448bd"
+      sha256: "92d4488434b520a62570293fbd33bb556c7d49230791c1b4bbd973baf6d2dc67"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.0"
+    version: "2.1.1"
   path:
     dependency: transitive
     description:
@@ -316,18 +316,18 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: "8c4967f8b7cb46dc914e178daa29813d83ae502e0529d7b0478330616a691ef7"
+      sha256: "4adf4fd5423ec60a29506c76581bc05854c55e3a0b72d35bb28d661c9686edf2"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.14"
+    version: "2.2.15"
   path_provider_foundation:
     dependency: transitive
     description:
       name: path_provider_foundation
-      sha256: f234384a3fdd67f989b4d54a5d73ca2a6c422fa55ae694381ae0f4375cd1ea16
+      sha256: "4843174df4d288f5e29185bd6e72a6fbdf5a4a4602717eed565497429f179942"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.0"
+    version: "2.4.1"
   path_provider_linux:
     dependency: transitive
     description:
@@ -428,50 +428,50 @@ packages:
     dependency: transitive
     description:
       name: pub_semver
-      sha256: "40d3ab1bbd474c4c2328c91e3a7df8c6dd629b79ece4c4bd04bee496a224fb0c"
+      sha256: "7b3cfbf654f3edd0c6298ecd5be782ce997ddf0e00531b9464b55245185bbbbd"
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.4"
+    version: "2.1.5"
   sentiance_core:
     dependency: "direct main"
     description:
       name: sentiance_core
-      sha256: "05cb23679fcdc7e4c4d90e41ff56bf11f6f807644a898858a24978f1708ffd5d"
+      sha256: "3485e1766faebe9cbf35e8534f20a9190c239aaf73fa5b8ca280d1efcfd3b805"
       url: "https://pub.dev"
     source: hosted
-    version: "6.9.2"
+    version: "6.9.3"
   sentiance_crash_detection:
     dependency: "direct main"
     description:
       name: sentiance_crash_detection
-      sha256: "28d0c5190bbf49a9e263d07af937326eaa7432f439cfed7a582b875675a72f71"
+      sha256: "609f47331a5ecb9a3755e5c4cc5895f62ac30288bbef5916a4a0fdf78cd8a148"
       url: "https://pub.dev"
     source: hosted
-    version: "6.9.2"
+    version: "6.9.3"
   sentiance_driving_insights:
     dependency: "direct main"
     description:
       name: sentiance_driving_insights
-      sha256: "587cde127026228fad9a9262dff3eca344ad559db5886fc456bed8bc146b08f4"
+      sha256: b79f6da206ac17b54969fc587905d13518d987a046f5c767ff26439a28ef55fd
       url: "https://pub.dev"
     source: hosted
-    version: "6.9.2"
+    version: "6.9.3"
   sentiance_event_timeline:
     dependency: "direct main"
     description:
       name: sentiance_event_timeline
-      sha256: f3987c3778743b6730b8b8e97e7cb5706a88a19e148313ef5f78117e3e8fea79
+      sha256: ef211fa18e7af7f55faa1c6922d524026b945f29d6eadbd90c2cbbd1011d07c3
       url: "https://pub.dev"
     source: hosted
-    version: "6.9.2"
+    version: "6.9.3"
   sentiance_user_context:
     dependency: "direct main"
     description:
       name: sentiance_user_context
-      sha256: "5751554311aa5aa29b0a0d443bd96ad56902fd2e1efd525ba302539d20eb8f79"
+      sha256: "19e6edfe6830aed431c45531acaddeed716f7ea1c60e8376cf3b2c1a482d1dcf"
       url: "https://pub.dev"
     source: hosted
-    version: "6.9.2"
+    version: "6.9.3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -577,10 +577,10 @@ packages:
     dependency: transitive
     description:
       name: watcher
-      sha256: "3d2ad6751b3c16cf07c7fca317a1413b3f26530319181b37e3b9039b84fc01d8"
+      sha256: "69da27e49efa56a15f8afe8f4438c4ec02eff0a117df1b22ea4aad194fe1c104"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.1.1"
   web:
     dependency: transitive
     description:

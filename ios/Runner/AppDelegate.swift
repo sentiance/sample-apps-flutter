@@ -26,32 +26,24 @@ import sentiance_crash_detection
         
         SentianceCorePlugin.shared.initialize()
         
-        GeneratedPluginRegistrant.register(
-          with: SentianceUserContextPlugin.initializeListener(
-              withEntryPoint: "registerUserContextListener",
-              libraryURI: libraryURI
-          )
+        SentianceUserContextPlugin.initializeListener(
+            withEntryPoint: "registerUserContextListener",
+            libraryURI: libraryURI
         )
         
-        GeneratedPluginRegistrant.register(
-            with: SentianceEventTimelinePlugin.initializeListener(
-                withEntryPoint: "registerEventTimelineListener",
-                libraryURI: libraryURI
-            )
+        SentianceEventTimelinePlugin.initializeListener(
+            withEntryPoint: "registerEventTimelineListener",
+            libraryURI: libraryURI
         )
         
-        GeneratedPluginRegistrant.register(
-            with: SentianceDrivingInsightsPlugin.initializeListener(
-                withEntryPoint: "registerDrivingInsightsListener",
-                libraryURI: libraryURI
-            )
+        SentianceDrivingInsightsPlugin.initializeListener(
+            withEntryPoint: "registerDrivingInsightsListener",
+            libraryURI: libraryURI
         )
         
-        GeneratedPluginRegistrant.register(
-            with: SentianceCrashDetectionPlugin.initializeListener(
-                withEntryPoint: "registerCrashDetectionListener",
-                libraryURI: libraryURI
-            )
+        SentianceCrashDetectionPlugin.initializeListener(
+            withEntryPoint: "registerCrashDetectionListener",
+            libraryURI: libraryURI
         )
     }
 
