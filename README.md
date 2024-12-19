@@ -10,8 +10,8 @@ In this sample application we cover the SDK Integration (and SDK user creation) 
 
 There are three places you need to look at
 
-1. `SentianceHelper.shared.initialize` in the `AppDelegate.m`. // iOS native initialization
-2. `initializeSentianceSDK` in the `MainApplication.kt`. // Android native initialization
+1. `initializeSentiance` in the `AppDelegate.swift`. // iOS native initialization
+2. `initializeSentiance` in the `MainApplication.kt`. // Android native initialization
 3. `_onCreateUserClick` in the `lib/src/screens/setup_screen.dart`. // sentiance user creation
 
 ## To run this project:
