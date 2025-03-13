@@ -1,13 +1,13 @@
 package com.example.sample_apps_flutter
 
-import io.flutter.app.FlutterApplication
+import android.app.Application
 import com.sentiance.core_plugin.CorePlugin
 import com.sentiance.user_context_plugin.UserContextPlugin
 import com.sentiance.event_timeline_plugin.EventTimelinePlugin
 import com.sentiance.driving_insights_plugin.DrivingInsightsPlugin
 import com.sentiance.crash_detection_plugin.CrashDetectionPlugin
 
-class MainApplication : FlutterApplication() {
+class MainApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
