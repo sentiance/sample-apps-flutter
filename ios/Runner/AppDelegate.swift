@@ -7,7 +7,7 @@ import sentiance_event_timeline
 import sentiance_driving_insights
 import sentiance_crash_detection
 
-@UIApplicationMain
+@main
 @objc class AppDelegate: FlutterAppDelegate {
     
   override func application(
