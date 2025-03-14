@@ -3,29 +3,29 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - permission_handler_apple (9.1.1):
+  - permission_handler_apple (9.3.0):
     - Flutter
-  - Protobuf (3.29.2)
-  - sentiance_core (6.9.3):
+  - Protobuf (3.29.3)
+  - sentiance_core (6.11.1):
     - Flutter
-    - SENTSDK (~> 6.9.0)
-  - sentiance_crash_detection (6.9.3):
+    - SENTSDK (~> 6.11.0)
+  - sentiance_crash_detection (6.11.1):
     - Flutter
-    - sentiance_core (= 6.9.3)
-    - SENTSDK (~> 6.9.0)
-  - sentiance_driving_insights (6.9.3):
+    - sentiance_core (= 6.11.1)
+    - SENTSDK (~> 6.11.0)
+  - sentiance_driving_insights (6.11.1):
     - Flutter
-    - sentiance_core (= 6.9.3)
-    - SENTSDK (~> 6.9.0)
-  - sentiance_event_timeline (6.9.3):
+    - sentiance_core (= 6.11.1)
+    - SENTSDK (~> 6.11.0)
+  - sentiance_event_timeline (6.11.1):
     - Flutter
-    - sentiance_core (= 6.9.3)
-    - SENTSDK (~> 6.9.0)
-  - sentiance_user_context (6.9.3):
+    - sentiance_core (= 6.11.1)
+    - SENTSDK (~> 6.11.0)
+  - sentiance_user_context (6.11.1):
     - Flutter
-    - sentiance_core (= 6.9.3)
-    - SENTSDK (~> 6.9.0)
-  - SENTSDK (6.9.1):
+    - sentiance_core (= 6.11.1)
+    - SENTSDK (~> 6.11.0)
+  - SENTSDK (6.11.1):
     - Protobuf (~> 3.18)
     - TensorFlowLiteC (~> 2.17.0)
     - UnzipKit (~> 1.9)
@@ -74,14 +74,14 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
-  Protobuf: ba5d83b2201386fec27d484c099cac510ea5c169
-  sentiance_core: a1e2a7ef9a5d7a9a6f82754d338eb815e49cf75d
-  sentiance_crash_detection: df5b8cdaa37f8304fe15a9e536aa757a55b55d3e
-  sentiance_driving_insights: dca7032e09253005e3c60bf22e252d604d0174c1
-  sentiance_event_timeline: 2c8b3ede8a8b3c9808a5802edda317158d2f66cd
-  sentiance_user_context: 1fd82b7670de76f2fc914e7af5c4f15d47b0664d
-  SENTSDK: b22c85d81541780e93d5c16f362fdf8fda541072
+  permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
+  Protobuf: e2de96d939c642ce8da186343ff8929b35223212
+  sentiance_core: 221397e6d8e1b2829524f8a3d5841922ebac9396
+  sentiance_crash_detection: 9896dccbe896355aba9552b952b3014d6abd9ba1
+  sentiance_driving_insights: b2a0389bff8dfead8ffa9a8af2e69f0dde652feb
+  sentiance_event_timeline: 33cf812579b27c4f6285a58b4663326bfffa519f
+  sentiance_user_context: 5c8816fb84b1957e23ff7879e7f0ad0b77295d9d
+  SENTSDK: 202209c8bf023af6b389c4fd718345fdb84ebbe7
   TensorFlowLiteC: eac6d689a8d391d1b202dc59e3d9165ba64aaf73
   UnzipKit: 40e2c20a4928f0cfde5eb05a1108c08ee3e16bdc
 
